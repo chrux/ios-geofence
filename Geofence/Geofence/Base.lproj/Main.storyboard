@@ -45,11 +45,17 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lpf-cm-SZo" secondAttribute="bottom" id="zgT-CV-8YS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Geotifications (0)" id="GTc-XL-Dzf"/>
+                    <navigationItem key="navigationItem" title="Geotifications (0)" id="GTc-XL-Dzf">
+                        <barButtonItem key="leftBarButtonItem" image="CurrentLocation" id="hw1-XR-b3E"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fVp-Lz-C0M"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="387"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CurrentLocation" width="15" height="15"/>
+    </resources>
 </document>
