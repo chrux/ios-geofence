@@ -14,6 +14,7 @@
 		AA74336D1C826B4900E70BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA74336B1C826B4900E70BB8 /* LaunchScreen.storyboard */; };
 		AA7433781C826B4900E70BB8 /* GeofenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433771C826B4900E70BB8 /* GeofenceTests.swift */; };
 		AA7433831C826B4900E70BB8 /* GeofenceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433821C826B4900E70BB8 /* GeofenceUITests.swift */; };
+		AA7433911C826CB100E70BB8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7433901C826CB100E70BB8 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		AA74337E1C826B4900E70BB8 /* GeofenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeofenceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7433821C826B4900E70BB8 /* GeofenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceUITests.swift; sourceTree = "<group>"; };
 		AA7433841C826B4900E70BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA7433901C826CB100E70BB8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7433911C826CB100E70BB8 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +83,7 @@
 				AA7433611C826B4900E70BB8 /* Geofence */,
 				AA7433761C826B4900E70BB8 /* GeofenceTests */,
 				AA7433811C826B4900E70BB8 /* GeofenceUITests */,
+				AA7433921C826CBA00E70BB8 /* Frameworks */,
 				AA7433601C826B4900E70BB8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,6 +127,14 @@
 				AA7433841C826B4900E70BB8 /* Info.plist */,
 			);
 			path = GeofenceUITests;
+			sourceTree = "<group>";
+		};
+		AA7433921C826CBA00E70BB8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA7433901C826CB100E70BB8 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
