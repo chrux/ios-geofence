@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -47,12 +48,67 @@
                     </view>
                     <navigationItem key="navigationItem" title="Geotifications (0)" id="GTc-XL-Dzf">
                         <barButtonItem key="leftBarButtonItem" image="CurrentLocation" id="hw1-XR-b3E"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fVp-Lz-C0M"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fVp-Lz-C0M">
+                            <connections>
+                                <segue destination="YVN-dK-iE3" kind="presentation" id="T2s-nU-SsZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="387"/>
+        </scene>
+        <!--Add Geotification-->
+        <scene sceneID="LMw-EV-CC0">
+            <objects>
+                <tableViewController id="BeB-Xv-Reu" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jhd-BA-an0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="w1h-Om-mgA">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w1h-Om-mgA" id="NJi-yk-NE5">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BeB-Xv-Reu" id="IF1-EA-Xmz"/>
+                            <outlet property="delegate" destination="BeB-Xv-Reu" id="l9N-qr-Qfe"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Geotification" id="vyy-1v-rfa">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NvI-Jp-oAU"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add" id="e4g-MO-YuS"/>
+                            <barButtonItem image="CurrentLocation" id="eEP-bW-B8E"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Px4-SI-xkO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1709" y="387"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TZv-Hw-1Qs">
+            <objects>
+                <navigationController id="YVN-dK-iE3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7cO-Jx-8qw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BeB-Xv-Reu" kind="relationship" relationship="rootViewController" id="LO8-SY-VcP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qkh-a9-gpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1026" y="387"/>
         </scene>
     </scenes>
     <resources>
