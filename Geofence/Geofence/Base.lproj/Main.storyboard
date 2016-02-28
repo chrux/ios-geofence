@@ -25,7 +25,7 @@
         <!--Geotifications (0)-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Geofence" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GeonotificationsViewController" customModule="Geofence" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -62,7 +62,7 @@
         <!--Add Geotification-->
         <scene sceneID="LMw-EV-CC0">
             <objects>
-                <tableViewController id="BeB-Xv-Reu" sceneMemberID="viewController">
+                <tableViewController id="BeB-Xv-Reu" customClass="AddGeonotificationTableViewController" customModule="Geofence" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jhd-BA-an0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Geotification" id="vyy-1v-rfa">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NvI-Jp-oAU"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NvI-Jp-oAU">
+                            <connections>
+                                <segue destination="XTt-R3-gPd" kind="unwind" unwindAction="unwindToGeonotifications:" id="B1F-rc-dXT"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Add" id="e4g-MO-YuS"/>
                             <barButtonItem image="CurrentLocation" id="eEP-bW-B8E"/>
@@ -91,6 +95,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Px4-SI-xkO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="XTt-R3-gPd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1709" y="387"/>
         </scene>
