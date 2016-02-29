@@ -8,14 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		AA7433631C826B4900E70BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433621C826B4900E70BB8 /* AppDelegate.swift */; };
-		AA7433651C826B4900E70BB8 /* GeonotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433641C826B4900E70BB8 /* GeonotificationsViewController.swift */; };
 		AA7433681C826B4900E70BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA7433661C826B4900E70BB8 /* Main.storyboard */; };
 		AA74336A1C826B4900E70BB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7433691C826B4900E70BB8 /* Assets.xcassets */; };
 		AA74336D1C826B4900E70BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA74336B1C826B4900E70BB8 /* LaunchScreen.storyboard */; };
 		AA7433781C826B4900E70BB8 /* GeofenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433771C826B4900E70BB8 /* GeofenceTests.swift */; };
 		AA7433831C826B4900E70BB8 /* GeofenceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433821C826B4900E70BB8 /* GeofenceUITests.swift */; };
 		AA7433911C826CB100E70BB8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7433901C826CB100E70BB8 /* MapKit.framework */; };
-		AA7433941C82783B00E70BB8 /* AddGeonotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433931C82783B00E70BB8 /* AddGeonotificationTableViewController.swift */; };
+		AA7433941C82783B00E70BB8 /* AddGeotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433931C82783B00E70BB8 /* AddGeotificationTableViewController.swift */; };
+		AA7433981C828C1D00E70BB8 /* CLLocationManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433971C828C1D00E70BB8 /* CLLocationManager+Helpers.swift */; };
+		AA74339A1C82910600E70BB8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7433991C82910600E70BB8 /* Utilities.swift */; };
+		AA74339D1C83DBBC00E70BB8 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74339C1C83DBBC00E70BB8 /* Geotification.swift */; };
+		AA74339F1C83DBF400E70BB8 /* GeotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74339E1C83DBF400E70BB8 /* GeotificationsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +41,6 @@
 /* Begin PBXFileReference section */
 		AA74335F1C826B4900E70BB8 /* Geofence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geofence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7433621C826B4900E70BB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA7433641C826B4900E70BB8 /* GeonotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeonotificationsViewController.swift; sourceTree = "<group>"; };
 		AA7433671C826B4900E70BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA7433691C826B4900E70BB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA74336C1C826B4900E70BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,7 +52,11 @@
 		AA7433821C826B4900E70BB8 /* GeofenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceUITests.swift; sourceTree = "<group>"; };
 		AA7433841C826B4900E70BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7433901C826CB100E70BB8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		AA7433931C82783B00E70BB8 /* AddGeonotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGeonotificationTableViewController.swift; path = Controllers/AddGeonotificationTableViewController.swift; sourceTree = "<group>"; };
+		AA7433931C82783B00E70BB8 /* AddGeotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGeotificationTableViewController.swift; path = Controllers/AddGeotificationTableViewController.swift; sourceTree = "<group>"; };
+		AA7433971C828C1D00E70BB8 /* CLLocationManager+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLLocationManager+Helpers.swift"; path = "Extensions/CLLocationManager+Helpers.swift"; sourceTree = "<group>"; };
+		AA7433991C82910600E70BB8 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		AA74339C1C83DBBC00E70BB8 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Geotification.swift; path = Models/Geotification.swift; sourceTree = "<group>"; };
+		AA74339E1C83DBF400E70BB8 /* GeotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeotificationsViewController.swift; path = Controllers/GeotificationsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +109,15 @@
 		AA7433611C826B4900E70BB8 /* Geofence */ = {
 			isa = PBXGroup;
 			children = (
+				AA74339B1C83DB9A00E70BB8 /* Models */,
+				AA7433961C828BFE00E70BB8 /* Extensions */,
 				AA7433951C82795C00E70BB8 /* Controllers */,
 				AA7433621C826B4900E70BB8 /* AppDelegate.swift */,
 				AA7433661C826B4900E70BB8 /* Main.storyboard */,
 				AA7433691C826B4900E70BB8 /* Assets.xcassets */,
 				AA74336B1C826B4900E70BB8 /* LaunchScreen.storyboard */,
 				AA74336E1C826B4900E70BB8 /* Info.plist */,
+				AA7433991C82910600E70BB8 /* Utilities.swift */,
 			);
 			path = Geofence;
 			sourceTree = "<group>";
@@ -142,10 +151,26 @@
 		AA7433951C82795C00E70BB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA7433641C826B4900E70BB8 /* GeonotificationsViewController.swift */,
-				AA7433931C82783B00E70BB8 /* AddGeonotificationTableViewController.swift */,
+				AA74339E1C83DBF400E70BB8 /* GeotificationsViewController.swift */,
+				AA7433931C82783B00E70BB8 /* AddGeotificationTableViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		AA7433961C828BFE00E70BB8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA7433971C828C1D00E70BB8 /* CLLocationManager+Helpers.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		AA74339B1C83DB9A00E70BB8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA74339C1C83DBBC00E70BB8 /* Geotification.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,9 +304,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7433941C82783B00E70BB8 /* AddGeonotificationTableViewController.swift in Sources */,
-				AA7433651C826B4900E70BB8 /* GeonotificationsViewController.swift in Sources */,
+				AA7433941C82783B00E70BB8 /* AddGeotificationTableViewController.swift in Sources */,
 				AA7433631C826B4900E70BB8 /* AppDelegate.swift in Sources */,
+				AA74339F1C83DBF400E70BB8 /* GeotificationsViewController.swift in Sources */,
+				AA74339D1C83DBBC00E70BB8 /* Geotification.swift in Sources */,
+				AA74339A1C82910600E70BB8 /* Utilities.swift in Sources */,
+				AA7433981C828C1D00E70BB8 /* CLLocationManager+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
