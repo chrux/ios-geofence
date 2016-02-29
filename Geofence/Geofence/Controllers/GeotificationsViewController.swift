@@ -20,18 +20,16 @@ class GeotificationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        CLLocationManager.sharedInstance.delegate = self
+        
+        CLLocationManager.sharedInstance.requestAlwaysAuthorization()
+        
         loadAllGeotifications()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        CLLocationManager.sharedInstance.requestWhenInUseAuthorization()
     }
 
     // MARK: - Navigation
@@ -88,6 +86,7 @@ class GeotificationsViewController: UIViewController {
     
     func updateGeotificationsCount() {
         title = "Geotifications (\(geotifications.count))"
+        navigationItem.rightBarButtonItem?.enabled = (geotifications.count < 20)  // Add this line
     }
     
     func saveAllGeotifications() {
@@ -117,6 +116,44 @@ class GeotificationsViewController: UIViewController {
         updateGeotificationsCount()
     }
     
+    /// Registering Your Geofences
+    func regionWithGeotification(geotification: Geotification) -> CLCircularRegion {
+        // 1
+        let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
+        // 2
+        region.notifyOnEntry = (geotification.eventType == .OnEntry)
+        region.notifyOnExit = !region.notifyOnEntry
+        
+        return region
+    }
+    
+    ///  Note: Core Location restricts the number of registered geofences to a maximum of 20 per app.
+    func startMonitoringGeotification(geotification: Geotification) {
+        // 1
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            showSimpleAlertWithTitle("Error", message: "Geofencing is not supported on this device!", viewController: self)
+            return
+        }
+        // 2
+        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+            showSimpleAlertWithTitle("Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.", viewController: self)
+        }
+        // 3
+        let region = regionWithGeotification(geotification)
+        // 4
+        CLLocationManager.sharedInstance.startMonitoringForRegion(region)
+    }
+    
+    func stopMonitoringGeotification(geotification: Geotification) {
+        for region in CLLocationManager.sharedInstance.monitoredRegions {
+            if let circularRegion = region as? CLCircularRegion {
+                if circularRegion.identifier == geotification.identifier {
+                    CLLocationManager.sharedInstance.stopMonitoringForRegion(circularRegion)
+                }
+            }
+        }
+    }
+    
 }
 
 // MARK: - AddGeotificationDelegate
@@ -126,9 +163,16 @@ extension GeotificationsViewController: AddGeotificationDelegate {
     func addGeotification(controller: AddGeotificationTableViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: EventType) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
+        // 1
+        let clampedRadius = (radius > CLLocationManager.sharedInstance.maximumRegionMonitoringDistance) ?
+            CLLocationManager.sharedInstance.maximumRegionMonitoringDistance : radius
+        
         // Add geotification
-        let geotification = Geotification(coordinate: coordinate, radius: radius, identifier: identifier, note: note, eventType: eventType)
+        let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note, eventType: eventType)
         addGeotification(geotification)
+        
+        startMonitoringGeotification(geotification)
+        
         saveAllGeotifications()
     }
     
@@ -174,9 +218,29 @@ extension GeotificationsViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // Delete geotification
         if let geotification = view.annotation as? Geotification {
+            stopMonitoringGeotification(geotification)   // Add this statement
             removeGeotification(geotification)
             saveAllGeotifications()
         }
+    }
+    
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension GeotificationsViewController: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        mapView.showsUserLocation = (status == .AuthorizedAlways)
+    }
+    
+    // Reacting to Geofence Events
+    func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
+        print("Monitoring failed for region with identifier: \(region?.identifier)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Location Manager failed with the following error: \(error)")
     }
     
 }

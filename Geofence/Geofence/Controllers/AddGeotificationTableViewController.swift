@@ -36,12 +36,6 @@ class AddGeotificationTableViewController: UITableViewController {
         addButton.enabled = false
         tableView.tableFooterView = UIView()
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        CLLocationManager.sharedInstance.requestWhenInUseAuthorization()
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
