@@ -10,20 +10,17 @@ import UIKit
 import CoreLocation
 import MapKit
 
+let kSavedItemsKey = "savedItems"
+
 class GeotificationsViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    private let kSavedItemsKey = "savedItems"
     private var geotifications = [Geotification]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        CLLocationManager.sharedInstance.delegate = self
-        
-        CLLocationManager.sharedInstance.requestAlwaysAuthorization()
-        
         loadAllGeotifications()
     }
 

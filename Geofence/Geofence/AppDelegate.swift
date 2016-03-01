@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+        application.registerUserNotificationSettings(UIUserNotificationSettings(
+            forTypes: [.Sound, .Alert, .Badge],
+            categories: nil)
+        )
+        application.cancelAllLocalNotifications()
+        
         return true
     }
 
@@ -41,6 +52,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // MARK: - Helpers
+    
+    func notefromRegionIdentifier(identifier: String) -> String? {
+        if let savedItems = NSUserDefaults.standardUserDefaults().arrayForKey(kSavedItemsKey) {
+            for savedItem in savedItems {
+                if let geotification = NSKeyedUnarchiver.unarchiveObjectWithData(savedItem as! NSData) as? Geotification {
+                    if geotification.identifier == identifier {
+                        return geotification.note
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
+    func handleRegionEvent(region: CLRegion) {
+        // Show an alert if application is active
+        if UIApplication.sharedApplication().applicationState == .Active {
+            if let message = notefromRegionIdentifier(region.identifier) {
+                if let viewController = window?.rootViewController {
+                    showSimpleAlertWithTitle(nil, message: message, viewController: viewController)
+                }
+            }
+        } else {
+            // Otherwise present a local notification
+            let notification = UILocalNotification()
+            notification.alertBody = notefromRegionIdentifier(region.identifier)
+            notification.soundName = "Default";
+            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        }
+    }
+    
+}
 
+// MARK: - CLLocationManagerDelegate
+
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    // Reacting to Geofence Events
+    func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
+        print("Monitoring failed for region with identifier: \(region?.identifier)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Location Manager failed with the following error: \(error)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleRegionEvent(region)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleRegionEvent(region)
+        }
+    }
+    
 }
 
